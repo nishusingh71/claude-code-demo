@@ -1,6 +1,8 @@
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import { useAuth } from '@/auth/AuthContext'
 import { useState, useEffect } from 'react'
+import logoSvg from '@/assets/logo.svg'
+import blogSvg from '@/assets/blogo.svg'
 
 export default function MainLayout() {
   const { user, logout } = useAuth()
@@ -25,11 +27,7 @@ export default function MainLayout() {
       } supports-[backdrop-filter]:bg-white/80`}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 font-bold text-slate-800 hover:opacity-80 transition-opacity">
-            {/* <span className="inline-block w-10 h-10 bg-gradient-to-br from-brand to-brand-600 rounded-lg shadow-lg shadow-brand/30">
-              <span className="text-white font-bold text-2xl leading-none w-full h-full flex items-center justify-center">D</span>
-            </span>
-            <span className="text-lg tracking-tight">DSecure</span> */}
-            <img src="./src/assets/logo.svg" alt="D-Secure" className="h-10 w-28" />
+            <img src={logoSvg} alt="D-Secure" className="h-10 w-28" />
           </Link>
           <nav className="hidden md:flex items-center gap-8 text-sm">
             <div className="relative group">
@@ -321,7 +319,7 @@ export default function MainLayout() {
                     <span className="text-white font-bold text-2xl flex items-center justify-center h-full">D</span>
                   </span>
                   <span className="text-xl tracking-tight">DSecure</span> */}
-                  <img src="./src/assets/blogo.svg" alt="D-Secure" className="h-10 w-28 text-white" />
+                  <img src={blogSvg} alt="D-Secure" className="h-10 w-28 text-white" />
                 </Link>
                 <p className="text-slate-300 leading-relaxed mb-6 text-base">
                   Leading provider of certified data erasure solutions for enterprises worldwide. 
