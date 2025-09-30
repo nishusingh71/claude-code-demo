@@ -34,7 +34,7 @@ export default function MainLayout() {
               publicId={assets.logos.main} 
               alt="D-Secure" 
               className="h-10 w-28"
-              size="medium"
+              size="small"
             />
             {/* Fallback to local logo if Cloudinary is not configured */}
             <img 
@@ -335,7 +335,7 @@ export default function MainLayout() {
                     publicId={assets.logos.white} 
                     alt="D-Secure" 
                     className="h-10 w-28 text-white"
-                    size="medium"
+                    size="small"
                   />
                   {/* Fallback to local logo if Cloudinary is not configured */}
                   <img 

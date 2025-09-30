@@ -11,6 +11,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage'))
 const PricingPage = lazy(() => import('./pages/PricingPage'))
 const About=lazy(() => import('./pages/About'))
 const PaymentPage = lazy(() => import('./pages/PaymentPage'))
+const DiagnosticsPage = lazy(() => import('./pages/DiagnosticsPage'))
 import LoginPage from './pages/auth/LoginPage'
 import RegisterPage from './pages/auth/RegisterPage'
 import UserDashboard from './pages/dashboards/UserDashboard'
@@ -44,6 +45,7 @@ export default function App() {
           <Route path="about" element={<About />} />
           <Route path="pricing" element={<PricingPage />} />
           <Route path="payment" element={<PaymentPage />} />
+          <Route path="diagnostics" element={<DiagnosticsPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
           <Route

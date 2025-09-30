@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "upload-assets": "node scripts/upload-assets.js",
     "test-cloudinary": "node scripts/test-cloudinary.js",
+    "verify-assets": "node scripts/verify-assets.js",
     "cloudinary:setup": "echo 'Run: npm run test-cloudinary' && echo 'Then: npm run upload-assets' && echo 'Finally: Set VITE_CLOUDINARY_CLOUD_NAME in your Vercel environment variables'"
   },
   "dependencies": {
