@@ -3,6 +3,8 @@ import { useAuth } from '@/auth/AuthContext'
 import { useState, useEffect } from 'react'
 import logoSvg from '@/assets/logo.svg'
 import blogSvg from '@/assets/blogo.svg'
+import { CloudinaryLogo } from '@/components/CloudinaryImage'
+import { assets } from '@/utils/cloudinary'
 
 export default function MainLayout() {
   const { user, logout } = useAuth()
@@ -27,7 +29,20 @@ export default function MainLayout() {
       } supports-[backdrop-filter]:bg-white/80`}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 font-bold text-slate-800 hover:opacity-80 transition-opacity">
-            <img src={logoSvg} alt="D-Secure" className="h-10 w-28" />
+            {/* Cloudinary logo with fallback to local asset */}
+            <CloudinaryLogo 
+              publicId={assets.logos.main} 
+              alt="D-Secure" 
+              className="h-10 w-28"
+              size="medium"
+            />
+            {/* Fallback to local logo if Cloudinary is not configured */}
+            <img 
+              src={logoSvg} 
+              alt="D-Secure" 
+              className="h-10 w-28 hidden"
+              style={{ display: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME ? 'none' : 'block' }}
+            />
           </Link>
           <nav className="hidden md:flex items-center gap-8 text-sm">
             <div className="relative group">
@@ -315,11 +330,20 @@ export default function MainLayout() {
               {/* Company Info */}
               <div className="lg:col-span-4">
                 <Link to="/" className="flex items-center gap-3 font-bold text-white hover:opacity-80 transition-opacity mb-6">
-                  {/* <span className="inline-block w-12 h-12 bg-gradient-to-br from-brand to-brand-600 rounded-xl shadow-lg shadow-brand/20">
-                    <span className="text-white font-bold text-2xl flex items-center justify-center h-full">D</span>
-                  </span>
-                  <span className="text-xl tracking-tight">DSecure</span> */}
-                  <img src={blogSvg} alt="D-Secure" className="h-10 w-28 text-white" />
+                  {/* Cloudinary white logo with fallback */}
+                  <CloudinaryLogo 
+                    publicId={assets.logos.white} 
+                    alt="D-Secure" 
+                    className="h-10 w-28 text-white"
+                    size="medium"
+                  />
+                  {/* Fallback to local logo if Cloudinary is not configured */}
+                  <img 
+                    src={blogSvg} 
+                    alt="D-Secure" 
+                    className="h-10 w-28 text-white hidden"
+                    style={{ display: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME ? 'none' : 'block' }}
+                  />
                 </Link>
                 <p className="text-slate-300 leading-relaxed mb-6 text-base">
                   Leading provider of certified data erasure solutions for enterprises worldwide. 
