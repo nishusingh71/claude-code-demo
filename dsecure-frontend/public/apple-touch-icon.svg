@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" fill="none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" fill="none">
+
+  <defs>  <!-- Background circle -->
+
+    <style>  <circle cx="90" cy="90" r="90" fill="#1e40af"/>
+
+      .network-bg { fill: #1e293b; }  
+
+      .network-primary { fill: #06b6d4; }  <!-- Shield outline -->
+
+      .network-secondary { fill: #0891b2; }  <path d="M90 25L125 40v35c0 35-35 60-35 60s-35-25-35-60V40l35-15z" 
+
+    </style>        fill="none" 
+
+  </defs>        stroke="white" 
+
+          stroke-width="6" 
+
+  <!-- Background with rounded corners for Apple devices -->        stroke-linejoin="round"/>
+
+  <rect width="180" height="180" rx="40" class="network-bg"/>  
+
+    <!-- Shield fill -->
+
+  <!-- Central hub -->  <path d="M90 32L120 45v32c0 28-30 50-30 50s-30-22-30-50V45l30-13z" 
+
+  <circle cx="90" cy="90" r="14" class="network-primary"/>        fill="white" 
+
+          opacity="0.95"/>
+
+  <!-- Connection lines -->  
+
+  <g stroke="#06b6d4" stroke-width="3" fill="none">  <!-- Lock icon inside shield -->
+
+    <!-- Top -->  <rect x="75" y="80" width="30" height="25" rx="4" fill="#1e40af" stroke="#1e40af" stroke-width="2"/>
+
+    <line x1="90" y1="76" x2="90" y2="36"/>  <path d="M80 80v-8c0-5.5 4.5-10 10-10s10 4.5 10 10v8" 
+
+    <!-- Top Right -->        fill="none" 
+
+    <line x1="100.9" y1="79.1" x2="127.3" y2="52.7"/>        stroke="#1e40af" 
+
+    <!-- Right -->        stroke-width="4"/>
+
+    <line x1="104" y1="90" x2="144" y2="90"/>  
+
+    <!-- Bottom Right -->  <!-- Key hole -->
+
+    <line x1="100.9" y1="100.9" x2="127.3" y2="127.3"/>  <circle cx="90" cy="92" r="3" fill="white"/>
+
+    <!-- Bottom -->  <rect x="88" y="92" width="4" height="8" fill="white"/>
+
+    <line x1="90" y1="104" x2="90" y2="144"/></svg>
+    <!-- Bottom Left -->
+    <line x1="79.1" y1="100.9" x2="52.7" y2="127.3"/>
+    <!-- Left -->
+    <line x1="76" y1="90" x2="36" y2="90"/>
+    <!-- Top Left -->
+    <line x1="79.1" y1="79.1" x2="52.7" y2="52.7"/>
+  </g>
+  
+  <!-- Endpoint nodes -->
+  <g class="network-secondary">
+    <!-- Top -->
+    <circle cx="90" cy="36" r="7"/>
+    <!-- Top Right -->
+    <circle cx="127.3" cy="52.7" r="7"/>
+    <!-- Right -->
+    <circle cx="144" cy="90" r="7"/>
+    <!-- Bottom Right -->
+    <circle cx="127.3" cy="127.3" r="7"/>
+    <!-- Bottom -->
+    <circle cx="90" cy="144" r="7"/>
+    <!-- Bottom Left -->
+    <circle cx="52.7" cy="127.3" r="7"/>
+    <!-- Left -->
+    <circle cx="36" cy="90" r="7"/>
+    <!-- Top Left -->
+    <circle cx="52.7" cy="52.7" r="7"/>
+  </g>
+</svg>
