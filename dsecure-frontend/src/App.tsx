@@ -69,6 +69,8 @@ export default function App() {
             <Route path="logs" element={<AdminLogs />} />
             <Route path="subusers" element={<AdminSubusers />} />
           </Route>
+          {/* Catch-all route for unmatched paths */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
       </Suspense>
