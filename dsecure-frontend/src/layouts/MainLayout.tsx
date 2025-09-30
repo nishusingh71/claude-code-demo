@@ -35,13 +35,7 @@ export default function MainLayout() {
               alt="D-Secure" 
               className="h-10 w-28"
               size="small"
-            />
-            {/* Fallback to local logo if Cloudinary is not configured */}
-            <img 
-              src={logoSvg} 
-              alt="D-Secure" 
-              className="h-10 w-28 hidden"
-              style={{ display: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME ? 'none' : 'block' }}
+              fallback={logoSvg}
             />
           </Link>
           <nav className="hidden md:flex items-center gap-8 text-sm">
@@ -336,13 +330,7 @@ export default function MainLayout() {
                     alt="D-Secure" 
                     className="h-10 w-28 text-white"
                     size="small"
-                  />
-                  {/* Fallback to local logo if Cloudinary is not configured */}
-                  <img 
-                    src={blogSvg} 
-                    alt="D-Secure" 
-                    className="h-10 w-28 text-white hidden"
-                    style={{ display: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME ? 'none' : 'block' }}
+                    fallback={blogSvg}
                   />
                 </Link>
                 <p className="text-slate-300 leading-relaxed mb-6 text-base">

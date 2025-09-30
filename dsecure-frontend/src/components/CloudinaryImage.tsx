@@ -27,9 +27,16 @@ export const CloudinaryImage: React.FC<CloudinaryImageProps> = ({
   responsive = false,
   onClick
 }) => {
-  // Handle missing cloud name gracefully
-  if (!import.meta.env.VITE_CLOUDINARY_CLOUD_NAME) {
+  const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+  
+  // Enhanced debugging for missing cloud name
+  if (!cloudName) {
+    console.warn('🚨 Cloudinary Debug: VITE_CLOUDINARY_CLOUD_NAME is not set');
+    console.warn('🔍 Environment variables available:', Object.keys(import.meta.env));
+    console.warn('📋 Expected variable: VITE_CLOUDINARY_CLOUD_NAME=dhwi5wevf');
+    
     if (fallback) {
+      console.log(`✅ Using fallback image for: ${publicId}`);
       return (
         <img 
           src={fallback} 
@@ -42,7 +49,7 @@ export const CloudinaryImage: React.FC<CloudinaryImageProps> = ({
     }
     return (
       <div className={`bg-slate-200 flex items-center justify-center ${className}`}>
-        <span className="text-slate-500 text-xs">Image placeholder</span>
+        <span className="text-slate-500 text-xs">Missing VITE_CLOUDINARY_CLOUD_NAME</span>
       </div>
     )
   }
@@ -123,13 +130,15 @@ export const CloudinaryLogo: React.FC<{
   size?: 'small' | 'medium' | 'large'
   className?: string
   alt?: string
-}> = ({ publicId, size = 'medium', className = '', alt = 'Logo' }) => (
+  fallback?: string
+}> = ({ publicId, size = 'medium', className = '', alt = 'Logo', fallback }) => (
   <CloudinaryImage
     publicId={publicId}
     alt={alt}
     className={className}
     transformation="logo"
     size={size}
+    fallback={fallback}
   />
 )
 
