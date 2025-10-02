@@ -13,7 +13,7 @@ export default function UserDashboard() {
   const stats = {
     monthlyErasures: 132,
     totalDevices: 450,
-    successRate: '99.8%',
+    successRate: '100%',
     storageReclaimed: '2.4 TB'
   }
 
@@ -48,7 +48,7 @@ export default function UserDashboard() {
       </div>
 
       {/* Stats Grid */}
-      <div className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <Reveal delayMs={0}>
           <div className="card !p-6">
             <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
@@ -88,7 +88,7 @@ export default function UserDashboard() {
           </div>
         </Reveal>
         <Reveal delayMs={200}>
-          <div className="card !p-6">
+          <div className="card !p-4 sm:!p-6 min-w-0">
             <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
               <svg className="w-5 h-5 text-brand/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
@@ -107,7 +107,7 @@ export default function UserDashboard() {
           </div>
         </Reveal>
         <Reveal delayMs={300}>
-          <div className="card !p-6">
+          <div className="card !p-4 sm:!p-6 min-w-0">
             <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
               <svg className="w-5 h-5 text-brand/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
@@ -130,10 +130,10 @@ export default function UserDashboard() {
       {/* Recent Certificates */}
       <div className="mt-8">
         <h2 className="font-semibold text-slate-900 mb-4">Recent Certificates</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {certificates.map((cert, i) => (
             <Reveal key={cert.id} delayMs={i * 100}>
-              <div className="card hover:scale-[1.02] transition-transform">
+              <div className="card hover:scale-[1.02] transition-transform !p-4 sm:!p-6 min-w-0">
                 <div className="flex items-center justify-between">
                   <div className="text-sm font-medium text-slate-900">{cert.id}</div>
                   <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
@@ -163,11 +163,11 @@ export default function UserDashboard() {
       {/* Quick Actions */}
       <div className="mt-8">
         <h2 className="font-semibold text-slate-900 mb-4">Quick Actions</h2>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {quickActions.map((action, i) => (
             <Reveal key={action.name} delayMs={i * 100}>
               <button 
-                className={`card flex flex-col items-center justify-center py-8 ${
+                className={`card flex flex-col items-center justify-center py-6 sm:py-8 !p-4 sm:!p-6 min-w-0 ${
                   action.type === 'primary' 
                     ? 'bg-gradient-to-br from-brand to-brand-600 hover:to-brand-700' 
                     : 'hover:bg-slate-50'
@@ -200,10 +200,10 @@ export default function UserDashboard() {
                     </svg>
                   )}
                 </div>
-                <div className={`mt-4 text-sm font-medium ${
+                <div className={`mt-3 sm:mt-4 text-xs sm:text-sm font-medium text-center px-2 ${
                   action.type === 'primary' ? 'text-white' : 'text-slate-900'
                 }`}>
-                  {action.name}
+                  <span className="block truncate">{action.name}</span>
                 </div>
               </button>
             </Reveal>

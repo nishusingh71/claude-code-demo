@@ -6,7 +6,7 @@ export default function AdminDashboard() {
   const stats = [
     { label: 'Total Devices', value: '2,847', change: '+12%', trend: 'up' },
     { label: 'Active Jobs', value: '14', change: '-2', trend: 'down' },
-    { label: 'Success Rate', value: '99.2%', change: '+0.3%', trend: 'up' },
+    { label: 'Success Rate', value: '100%', change: '+0.3%', trend: 'up' },
     { label: 'Total Users', value: '156', change: '+5', trend: 'up' }
   ]
 
@@ -23,7 +23,7 @@ export default function AdminDashboard() {
   ]
 
   return (
-    <div className="container-app py-12">
+    <div className="container-app py-12 bg-gradient-to-br from-emerald-50 via-white to-teal-50">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900">
@@ -51,9 +51,9 @@ export default function AdminDashboard() {
       </div>
 
       {/* Stats Grid */}
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {stats.map(stat => (
-          <div key={stat.label} className="card !p-6 flex items-start justify-between">
+          <div key={stat.label} className="card !p-4 sm:!p-6 flex items-start justify-between min-w-0">
             <div>
               <p className="text-sm font-medium text-slate-600">{stat.label}</p>
               <p className="mt-2 text-3xl font-bold text-slate-900">{stat.value}</p>
@@ -70,36 +70,36 @@ export default function AdminDashboard() {
         ))}
       </div>
 
-      <div className="mt-8 grid md:grid-cols-2 gap-6">
+      <div className="mt-8 grid md:grid-cols-2 gap-4 sm:gap-6">
         {/* Recent Jobs */}
-        <div className="card !p-0">
-          <div className="px-6 py-5 border-b border-slate-200">
+        <div className="card !p-0 min-w-0">
+          <div className="px-4 sm:px-6 py-5 border-b border-slate-200">
             <h2 className="font-semibold text-slate-900">Recent Jobs</h2>
           </div>
-          <div className="divide-y divide-slate-200">
+          <div className="card-content divide-y divide-slate-200">
             {recentJobs.map(job => (
-              <div key={job.id} className="px-6 py-4 flex items-center justify-between hover:bg-slate-50 transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className={`w-2 h-2 rounded-full ${
+              <div key={job.id} className="px-4 sm:px-6 py-4 flex items-center justify-between hover:bg-slate-50 transition-colors min-w-0">
+                <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
+                  <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
                     job.status === 'completed' ? 'bg-green-400' : 'bg-red-400'
                   }`}></div>
-                  <div>
-                    <div className="font-medium text-slate-900">Job #{job.id}</div>
-                    <div className="text-sm text-slate-500">{job.type} • {job.devices} devices</div>
+                  <div className="min-w-0 flex-1">
+                    <div className="font-medium text-slate-900 truncate">Job #{job.id}</div>
+                    <div className="text-sm text-slate-500 truncate">{job.type} • {job.devices} devices</div>
                   </div>
                 </div>
-                <div className="text-sm text-slate-500">{job.date}</div>
+                <div className="text-sm text-slate-500 flex-shrink-0 ml-2">{job.date}</div>
               </div>
             ))}
           </div>
         </div>
 
         {/* Users Table */}
-        <div className="card !p-0">
-          <div className="px-6 py-5 border-b border-slate-200">
+        <div className="card !p-0 min-w-0">
+          <div className="px-4 sm:px-6 py-5 border-b border-slate-200">
             <h2 className="font-semibold text-slate-900">Active Users</h2>
           </div>
-          <div className="overflow-x-auto">
+          <div className="card-content card-table">
             <table className="w-full">
               <thead>
                 <tr className="text-left text-sm text-slate-500 bg-slate-50">
@@ -112,28 +112,28 @@ export default function AdminDashboard() {
               <tbody className="divide-y divide-slate-200">
                 {users.map(user => (
                   <tr key={user.email} className="hover:bg-slate-50 transition-colors">
-                    <td className="px-6 py-4">
-                      <div className="font-medium text-slate-900">{user.email}</div>
+                    <td className="px-3 sm:px-6 py-4">
+                      <div className="font-medium text-slate-900 truncate max-w-[120px] sm:max-w-none">{user.email}</div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 sm:px-6 py-4">
                       <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
                         user.role === 'admin' ? 'bg-brand-100 text-brand-800' : 'bg-slate-100 text-slate-800'
                       }`}>
                         {user.role}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 sm:px-6 py-4">
                       <span className={`inline-flex items-center gap-1 ${
                         user.status === 'active' ? 'text-green-600' : 'text-slate-500'
                       }`}>
                         <span className={`w-1.5 h-1.5 rounded-full ${
                           user.status === 'active' ? 'bg-green-400' : 'bg-slate-400'
                         }`}></span>
-                        {user.status}
+                        <span className="hidden sm:inline">{user.status}</span>
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-slate-500">
-                      {user.lastActive}
+                    <td className="px-3 sm:px-6 py-4 text-slate-500">
+                      <span className="truncate">{user.lastActive}</span>
                     </td>
                   </tr>
                 ))}

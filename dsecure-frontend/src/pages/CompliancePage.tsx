@@ -152,11 +152,11 @@ export default function CompliancePage() {
       )
     },
     {
-      title: 'Real-Time Monitoring',
-      description: 'Live status updates and progress tracking for all operations',
+      title: 'White Label Support',
+      description: 'Customizable branding and interface options for seamless integration',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17v4a2 2 0 002 2h4m-6-6V9a2 2 0 012-2h2m0 0V5a2 2 0 012-2h4a2 2 0 012 2v2M9 7h6" />
         </svg>
       )
     },
@@ -174,7 +174,7 @@ export default function CompliancePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-purple-50 to-white">
+      <section className="bg-gradient-to-br from-emerald-50 via-white to-teal-50">
         <div className="container-app py-16 md:py-24">
           <div className="text-center max-w-4xl mx-auto">
             <Reveal>
@@ -323,7 +323,7 @@ export default function CompliancePage() {
       </section>
 
       {/* Certifications */}
-      <section className="py-16 md:py-24 bg-slate-50">
+      {/* <section className="py-16 md:py-24 bg-slate-50">
         <div className="container-app">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">Third-Party Certifications</h2>
@@ -345,7 +345,7 @@ export default function CompliancePage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Audit & Reporting Features */}
       <section className="py-16 md:py-24">
@@ -376,7 +376,7 @@ export default function CompliancePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-slate-50">
+      <section className="py-16 md:py-24 bg-gradient-to-br from-emerald-50 via-white to-teal-50">
         <div className="container-app">
           <Reveal>
             <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl p-8 md:p-12 text-center text-white">

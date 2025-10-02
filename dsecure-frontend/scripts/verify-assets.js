@@ -13,9 +13,9 @@ config({ path: '.env.local' })
 
 const cloudName = process.env.VITE_CLOUDINARY_CLOUD_NAME
 
-console.log('🔍 Cloudinary Asset Verification')
-console.log('==============================')
-console.log('')
+// console.log('🔍 Cloudinary Asset Verification')
+// console.log('==============================')
+// console.log('')
 
 // Test URLs
 const testAssets = [
@@ -53,21 +53,21 @@ async function testUrl(url) {
 }
 
 async function verifyAssets() {
-  console.log(`Testing assets for cloud: ${cloudName}`)
-  console.log('')
+  // console.log(`Testing assets for cloud: ${cloudName}`)
+  // console.log('')
   
   for (const asset of testAssets) {
-    console.log(`📸 Testing: ${asset.name}`)
-    console.log(`   URL: ${asset.url}`)
+    // console.log(`📸 Testing: ${asset.name}`)
+    // console.log(`   URL: ${asset.url}`)
     
     const result = await testUrl(asset.url)
     
     if (result.exists) {
-      console.log(`   ✅ EXISTS (${result.status}) - ${result.contentType}`)
+      // console.log(`   ✅ EXISTS (${result.status}) - ${result.contentType}`)
     } else {
-      console.log(`   ❌ NOT FOUND (${result.status})`)
+      // console.log(`   ❌ NOT FOUND (${result.status})`)
     }
-    console.log('')
+    // console.log('')
   }
 }
 

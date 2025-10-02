@@ -134,7 +134,7 @@ export default function SolutionsPage() {
       useCases: [
         { title: 'Client Services', description: 'Offer data sanitization as a managed service' },
         { title: 'Partner Programs', description: 'Revenue-generating partnerships' },
-        { title: 'Technical Integration', description: 'API integration with existing platforms' },
+        // { title: 'Technical Integration', description: 'API integration with existing platforms' },
         { title: 'Support Services', description: '24/7 technical support for your clients' }
       ]
     }

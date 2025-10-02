@@ -1,5 +1,6 @@
 import Reveal from '@/components/Reveal'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function ResourcesPage() {
   const [activeCategory, setActiveCategory] = useState('all')
@@ -15,7 +16,8 @@ export default function ResourcesPage() {
       downloadSize: '2.4 MB',
       pages: 28,
       icon: '📋',
-      featured: true
+      featured: true,
+      referenceUrl: 'https://csrc.nist.gov/publications/detail/sp/800-88/rev-1/final'
     },
     {
       id: 2,
@@ -26,19 +28,20 @@ export default function ResourcesPage() {
       downloadSize: '1.8 MB',
       pages: 12,
       icon: '📊',
-      featured: true
+      featured: true,
+      referenceUrl: 'https://www.sans.org/white-papers/1907/'
     },
-    {
-      id: 3,
-      title: 'API Integration Documentation',
-      type: 'documentation',
-      category: 'technical',
-      description: 'Complete developer guide for integrating DSecure APIs into your existing systems.',
-      downloadSize: '3.2 MB',
-      pages: 45,
-      icon: '⚙️',
-      featured: false
-    },
+    // {
+    //   id: 3,
+    //   title: 'API Integration Documentation',
+    //   type: 'documentation',
+    //   category: 'technical',
+    //   description: 'Complete developer guide for integrating DSecure APIs into your existing systems.',
+    //   downloadSize: '3.2 MB',
+    //   pages: 45,
+    //   icon: '⚙️',
+    //   featured: false
+    // },
     {
       id: 4,
       title: 'HIPAA Compliance in Healthcare',
@@ -48,7 +51,8 @@ export default function ResourcesPage() {
       downloadSize: '2.1 MB',
       pages: 22,
       icon: '🏥',
-      featured: false
+      featured: false,
+      referenceUrl: 'https://www.hhs.gov/hipaa/for-professionals/security/guidance/cybersecurity/index.html'
     },
     {
       id: 5,
@@ -59,7 +63,8 @@ export default function ResourcesPage() {
       downloadSize: '1.9 MB',
       pages: 18,
       icon: '♻️',
-      featured: false
+      featured: false,
+      referenceUrl: 'https://www.itassetmanagement.net/best-practices/'
     },
     {
       id: 6,
@@ -70,7 +75,8 @@ export default function ResourcesPage() {
       downloadSize: '2.7 MB',
       pages: 31,
       icon: '☁️',
-      featured: true
+      featured: true,
+      referenceUrl: 'https://aws.amazon.com/blogs/security/how-to-securely-destroy-data-stored-on-aws/'
     },
     {
       id: 7,
@@ -81,7 +87,8 @@ export default function ResourcesPage() {
       downloadSize: '1.5 MB',
       pages: 15,
       icon: '💰',
-      featured: false
+      featured: false,
+      referenceUrl: 'https://www.finra.org/rules-guidance/guidance/reports/2022-report-examination-findings'
     },
     {
       id: 8,
@@ -92,7 +99,8 @@ export default function ResourcesPage() {
       downloadSize: '0.8 MB',
       pages: 8,
       icon: '📈',
-      featured: false
+      featured: false,
+      referenceUrl: 'https://www.gartner.com/en/information-technology/insights/it-asset-disposition'
     },
     {
       id: 9,
@@ -103,7 +111,8 @@ export default function ResourcesPage() {
       downloadSize: '3.5 MB',
       pages: 38,
       icon: '🔒',
-      featured: false
+      featured: false,
+      referenceUrl: 'https://owasp.org/www-project-application-security-architecture/'
     }
   ]
 
@@ -118,8 +127,12 @@ export default function ResourcesPage() {
 
   const filteredResources = resources.filter(resource => {
     const matchesCategory = activeCategory === 'all' || resource.category === activeCategory
-    const matchesSearch = resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         resource.description.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesSearch = searchTerm === '' || 
+                         resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         resource.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         resource.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         resource.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         resource.referenceUrl.toLowerCase().includes(searchTerm.toLowerCase())
     return matchesCategory && matchesSearch
   })
 
@@ -132,7 +145,8 @@ export default function ResourcesPage() {
       time: '2:00 PM EST',
       speaker: 'Dr. Sarah Chen, Chief Security Officer',
       description: 'Learn advanced techniques for secure data erasure in hybrid and multi-cloud environments.',
-      status: 'upcoming'
+      status: 'upcoming',
+      referenceUrl: 'https://cloudsecurityalliance.org/research/guidance/'
     },
     {
       title: 'NIST 800-88 Rev. 1: What\'s New',
@@ -140,7 +154,8 @@ export default function ResourcesPage() {
       time: '1:00 PM EST',
       speaker: 'Michael Rodriguez, Compliance Director',
       description: 'Overview of the latest NIST guidelines and how to implement them in your organization.',
-      status: 'past'
+      status: 'past',
+      referenceUrl: 'https://csrc.nist.gov/publications/detail/sp/800-88/rev-1/final'
     },
     {
       title: 'Enterprise Scale Data Sanitization',
@@ -148,14 +163,24 @@ export default function ResourcesPage() {
       time: '3:00 PM EST',
       speaker: 'James Wilson, Solutions Architect',
       description: 'Best practices for managing large-scale data sanitization projects.',
-      status: 'past'
+      status: 'past',
+      referenceUrl: 'https://www.sans.org/white-papers/36907/'
     }
   ]
+
+  // Filter webinars based on search term
+  const filteredWebinars = webinars.filter(webinar => {
+    if (searchTerm === '') return true
+    return webinar.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+           webinar.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+           webinar.speaker.toLowerCase().includes(searchTerm.toLowerCase()) ||
+           webinar.referenceUrl.toLowerCase().includes(searchTerm.toLowerCase())
+  })
 
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-teal-50 to-white">
+      <section className="bg-gradient-to-br from-emerald-50 via-white to-teal-50">
         <div className="container-app py-16 md:py-24">
           <div className="text-center max-w-4xl mx-auto">
             <Reveal>
@@ -165,8 +190,8 @@ export default function ResourcesPage() {
             </Reveal>
             <Reveal delayMs={100}>
               <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-                Access comprehensive guides, whitepapers, case studies, and technical documentation 
-                to maximize your data sanitization success.
+                Access comprehensive guides, whitepapers, case studies, webinars, and technical documentation 
+                to maximize your data sanitization success. Search across all content and reference links.
               </p>
             </Reveal>
             <Reveal delayMs={200}>
@@ -174,7 +199,7 @@ export default function ResourcesPage() {
                 <div className="relative">
                   <input
                     type="text"
-                    placeholder="Search resources..."
+                    placeholder="Search resources, webinars, categories..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="w-full px-4 py-3 pl-12 rounded-lg border border-slate-300 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none"
@@ -217,9 +242,14 @@ export default function ResourcesPage() {
                       <span>{resource.downloadSize}</span>
                       <span className="capitalize">{resource.type}</span>
                     </div>
-                    <button className="w-full btn-primary text-sm">
-                      Download Now
-                    </button>
+                    <a 
+                      href={resource.referenceUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-full btn-primary text-sm inline-block text-center"
+                    >
+                      Read More
+                    </a>
                   </div>
                 </div>
               </Reveal>
@@ -286,9 +316,14 @@ export default function ResourcesPage() {
                     <span>{resource.pages} pages</span>
                     <span>{resource.downloadSize}</span>
                   </div>
-                  <button className="w-full btn-secondary text-xs">
-                    Download
-                  </button>
+                  <a 
+                    href={resource.referenceUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-full btn-secondary text-xs inline-block text-center"
+                  >
+                    Read More
+                  </a>
                 </div>
               </Reveal>
             ))}
@@ -315,7 +350,7 @@ export default function ResourcesPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {webinars.map((webinar, i) => (
+            {filteredWebinars.map((webinar, i) => (
               <Reveal key={i} delayMs={i*100}>
                 <div className="bg-white rounded-xl p-6 shadow-lg border border-slate-200/60">
                   <div className="flex items-center justify-between mb-4">
@@ -344,17 +379,30 @@ export default function ResourcesPage() {
                       {webinar.speaker}
                     </div>
                   </div>
-                  <button className={`w-full text-sm font-medium py-2 px-4 rounded-lg transition-colors ${
-                    webinar.status === 'upcoming'
-                      ? 'bg-green-600 hover:bg-green-700 text-white'
-                      : 'bg-slate-200 hover:bg-slate-300 text-slate-700'
-                  }`}>
-                    {webinar.status === 'upcoming' ? 'Register Now' : 'Watch Recording'}
-                  </button>
+                  <a 
+                    href={webinar.referenceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-full text-sm font-medium py-2 px-4 rounded-lg transition-colors inline-block text-center ${
+                      webinar.status === 'upcoming'
+                        ? 'bg-green-600 hover:bg-green-700 text-white'
+                        : 'bg-slate-200 hover:bg-slate-300 text-slate-700'
+                    }`}
+                  >
+                    {webinar.status === 'upcoming' ? 'Learn More' : 'Read Reference'}
+                  </a>
                 </div>
               </Reveal>
             ))}
           </div>
+
+          {filteredWebinars.length === 0 && searchTerm && (
+            <div className="text-center py-12">
+              <div className="text-slate-400 text-5xl mb-4">🎥</div>
+              <h3 className="text-xl font-semibold text-slate-900 mb-2">No webinars found</h3>
+              <p className="text-slate-600">Try adjusting your search terms to find relevant webinars.</p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -378,7 +426,9 @@ export default function ResourcesPage() {
                 </div>
                 <h3 className="font-bold text-slate-900 mb-2">Live Chat Support</h3>
                 <p className="text-slate-600 text-sm mb-4">Get instant help from our technical experts</p>
-                <button className="btn-primary text-sm">Start Chat</button>
+                <button className="btn-primary text-sm">
+                  <Link to="/contact">Start Chat</Link>
+                </button>
               </div>
             </Reveal>
 
@@ -391,7 +441,9 @@ export default function ResourcesPage() {
                 </div>
                 <h3 className="font-bold text-slate-900 mb-2">Email Support</h3>
                 <p className="text-slate-600 text-sm mb-4">Detailed responses within 24 hours</p>
-                <button className="btn-secondary text-sm">Contact Support</button>
+                <button className="btn-secondary text-sm">
+                  <Link to="/contact">Contact Support</Link>
+                  </button>
               </div>
             </Reveal>
 
@@ -404,7 +456,9 @@ export default function ResourcesPage() {
                 </div>
                 <h3 className="font-bold text-slate-900 mb-2">Training Services</h3>
                 <p className="text-slate-600 text-sm mb-4">Comprehensive training programs for your team</p>
-                <button className="btn-secondary text-sm">Learn More</button>
+                <button className="btn-secondary text-sm">
+                  <Link to="/training">Learn More</Link>
+                </button>
               </div>
             </Reveal>
           </div>

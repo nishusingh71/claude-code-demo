@@ -3,7 +3,7 @@ import BarChart from '@/components/BarChart'
 
 export default function AdminPerformance() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-6">
       <h1 className="text-2xl font-bold text-slate-900">Performance</h1>
       <div className="grid md:grid-cols-3 gap-6">
         <div className="card">
@@ -18,7 +18,7 @@ export default function AdminPerformance() {
         </div>
         <div className="card">
           <div className="text-sm text-slate-500">Success rate</div>
-          <div className="mt-1 text-2xl font-semibold">98.4%</div>
+          <div className="mt-1 text-2xl font-semibold">100%</div>
           <div className="mt-3"><Sparkline data={[97.8,98.1,98.0,98.2,98.4,98.5,98.3,98.6,98.4,98.5,98.6,98.4]} stroke="#f59e0b" fill="rgba(245,158,11,0.12)" /></div>
         </div>
       </div>

@@ -12,27 +12,27 @@ import { config } from 'dotenv'
 // Load environment variables
 config({ path: '.env.local' })
 
-console.log('🔍 Cloudinary Configuration Test')
-console.log('===============================')
-console.log('')
+// console.log('🔍 Cloudinary Configuration Test')
+// console.log('===============================')
+// console.log('')
 
 // Check environment variables
 const cloudName = process.env.VITE_CLOUDINARY_CLOUD_NAME
 const apiKey = process.env.VITE_CLOUDINARY_API_KEY
 
 if (!cloudName) {
-  console.error('❌ Missing VITE_CLOUDINARY_CLOUD_NAME in .env.local')
-  console.error('   Get this from your Cloudinary dashboard')
+  // console.error('❌ Missing VITE_CLOUDINARY_CLOUD_NAME in .env.local')
+  // console.error('   Get this from your Cloudinary dashboard')
   process.exit(1)
 }
 
-console.log(`✅ Cloud Name: ${cloudName}`)
-console.log(`✅ API Key: ${apiKey ? 'Set' : 'Not set (optional for frontend)'}`)
-console.log('')
+// console.log(`✅ Cloud Name: ${cloudName}`)
+// console.log(`✅ API Key: ${apiKey ? 'Set' : 'Not set (optional for frontend)'}`)
+// console.log('')
 
 // Test URL generation
-console.log('🌐 Test Image URLs:')
-console.log('==================')
+// console.log('🌐 Test Image URLs:')
+// console.log('==================')
 
 const baseUrl = `https://res.cloudinary.com/${cloudName}/image/upload`
 
@@ -61,16 +61,16 @@ const testUrls = [
 ]
 
 testUrls.forEach(({ name, publicId, url }) => {
-  console.log(`📸 ${name}:`)
-  console.log(`   Public ID: ${publicId}`)
-  console.log(`   URL: ${url}`)
-  console.log('')
+  // console.log(`📸 ${name}:`)
+  // console.log(`   Public ID: ${publicId}`)
+  // console.log(`   URL: ${url}`)
+  // console.log('')
 })
 
-console.log('💡 Next Steps:')
-console.log('=============')
-console.log('1. Upload your assets to Cloudinary with the public IDs shown above')
-console.log('2. Test the URLs in your browser to verify they load')
-console.log('3. Your app will automatically use Cloudinary when VITE_CLOUDINARY_CLOUD_NAME is set')
-console.log('')
-console.log('🚀 Ready to go! Your Cloudinary configuration looks good.')
+// console.log('💡 Next Steps:')
+// console.log('=============')
+// console.log('1. Upload your assets to Cloudinary with the public IDs shown above')
+// console.log('2. Test the URLs in your browser to verify they load')
+// console.log('3. Your app will automatically use Cloudinary when VITE_CLOUDINARY_CLOUD_NAME is set')
+// console.log('')
+// console.log('🚀 Ready to go! Your Cloudinary configuration looks good.')

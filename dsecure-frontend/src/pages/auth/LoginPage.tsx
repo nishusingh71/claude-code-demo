@@ -1,40 +1,116 @@
-import { FormEvent, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { FormEvent, useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '@/auth/AuthContext'
 
 export default function LoginPage() {
-  const { login } = useAuth()
+  const { login, demoLogin, getSmartRedirectPath } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [rememberMe, setRememberMe] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const [validationError, setValidationError] = useState<string | null>(null)
+  const [toast, setToast] = useState<{message: string, type: 'error' | 'success'} | null>(null)
+
+  // Toast functionality
+  const showToast = (message: string, type: 'error' | 'success' = 'error') => {
+    setToast({ message, type })
+    setTimeout(() => setToast(null), 5000) // Auto hide after 5 seconds
+  }
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setError(null)
+    setValidationError(null)
     setLoading(true)
+    
     try {
+      // Clear any previous errors
+      setError(null)
+      setValidationError(null)
+      
+      // Use the AuthContext login method which handles the API call
       await login(email, password)
       
-      // Check if there's a return path from pricing flow
-      const returnPath = localStorage.getItem('returnPath')
-      if (returnPath) {
-        localStorage.removeItem('returnPath')
-        navigate(returnPath, { replace: true })
+      showToast('Login successful!', 'success')
+      
+      // Use smart redirect based on user's payment/license status
+      const smartRedirectPath = getSmartRedirectPath()
+      
+      // Check for explicit redirect paths first
+      const redirectPath = sessionStorage.getItem('redirectAfterLogin') || 
+                           localStorage.getItem('returnPath') ||
+                           (location.state as any)?.from?.pathname
+      
+      // Clean up stored paths
+      sessionStorage.removeItem('redirectAfterLogin')
+      localStorage.removeItem('returnPath')
+      
+      if (redirectPath && redirectPath !== '/login') {
+        navigate(redirectPath, { replace: true })
       } else {
-        navigate('/dashboard', { replace: true })
+        // Use smart redirect path (payment check included)
+        navigate(smartRedirectPath, { replace: true })
       }
     } catch (e) {
-      setError('Invalid credentials')
+      console.error('Login error:', e)
+      const errorMessage = e instanceof Error ? e.message : 'Login failed'
+      
+      // Check for specific error types
+      if (errorMessage.toLowerCase().includes('fetch')) {
+        setError('Unable to connect to server. Please check if the backend is running.')
+        showToast('Server connection failed. Please try again later.', 'error')
+      } else if (errorMessage.toLowerCase().includes('not registered') || errorMessage.toLowerCase().includes('user not found')) {
+        setError('User not found. Please register first.')
+        showToast('Please register yourself first before trying to login!', 'error')
+      } else if (errorMessage.toLowerCase().includes('invalid') || errorMessage.toLowerCase().includes('credentials')) {
+        setError('Invalid email or password. Please try again.')
+        showToast('Invalid credentials. Please check your email and password.', 'error')
+      } else {
+        setError(errorMessage)
+        showToast(errorMessage, 'error')
+      }
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center">
-      <div className="w-full max-w-md px-8 py-12 rounded-2xl bg-white/60 backdrop-blur-xl shadow-2xl shadow-slate-900/10">
+    <>
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg border transition-all duration-300 ${
+          toast.type === 'error' 
+            ? 'bg-red-50 border-red-200 text-red-800' 
+            : 'bg-green-50 border-green-200 text-green-800'
+        }`}>
+          <div className="flex items-center gap-3">
+            {toast.type === 'error' ? (
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            )}
+            <span className="font-medium">{toast.message}</span>
+            <button 
+              onClick={() => setToast(null)}
+              className="ml-2 text-gray-400 hover:text-gray-600"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
+      
+      <div className="min-h-[80vh] flex items-center justify-center px-4 py-4 bg-gradient-to-br from-emerald-50 via-white to-teal-50">
+      <div className="w-full max-w-md px-4 sm:px-8 py-8 sm:py-12 rounded-2xl bg-white/60 backdrop-blur-xl shadow-2xl shadow-slate-900/10 overflow-hidden">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-brand to-brand-600 bg-clip-text text-transparent">
             Welcome Back
@@ -45,6 +121,18 @@ export default function LoginPage() {
         </div>
         
         <form onSubmit={onSubmit} className="space-y-6">
+          {/* Error Messages
+          {(error || validationError) && (
+            <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-sm text-red-600 flex items-center gap-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                {error || validationError}
+              </p>
+            </div>
+          )} */}
+          
           <div>
             <label htmlFor="email" className="flex text-sm font-medium text-slate-700 mb-2 items-center gap-2">
               <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,6 +183,27 @@ export default function LoginPage() {
             </div>
           </div>
 
+          {/* Remember Me Checkbox */}
+          {/* <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <input
+                id="remember-me"
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                className="h-4 w-4 text-brand focus:ring-brand border-gray-300 rounded"
+              />
+              <label htmlFor="remember-me" className="ml-2 block text-sm text-slate-700">
+                Remember me
+              </label>
+            </div>
+            <div className="text-sm">
+              <a href="" className="font-medium text-brand hover:text-brand-600">
+                Forgot your password?
+              </a>
+            </div>
+          </div> */}
+
           {error && (
             <div className="rounded-lg bg-red-50 p-4 text-sm text-red-600">
               <div className="flex items-center gap-2">
@@ -136,19 +245,23 @@ export default function LoginPage() {
             type="button"
             className="btn-secondary w-full flex items-center justify-center gap-2"
             onClick={async ()=>{
+              // console.log('Demo button clicked!')
+              // console.log('demoLogin function:', demoLogin)
               setError(null)
               setLoading(true)
               try {
-                await login('demo@admin.com','password')
+                // console.log('Calling demoLogin...')
+                // Use demo login function that bypasses all backend authentication
+                await demoLogin()
+                // console.log('Demo login successful, navigating to admin...')
                 
-                // Check if there's a return path from pricing flow
-                const returnPath = localStorage.getItem('returnPath')
-                if (returnPath) {
-                  localStorage.removeItem('returnPath')
-                  navigate(returnPath, { replace: true })
-                } else {
-                  navigate('/admin', { replace: true })
-                }
+                // Demo account always goes to admin dashboard
+                navigate('/admin', { replace: true })
+                
+              } catch (error) {
+                // console.error('Demo login error:', error)
+                setError('Demo mode failed to initialize: ' + (error instanceof Error ? error.message : 'Unknown error'))
+                showToast('Demo login failed. Please try again.', 'error')
               } finally {
                 setLoading(false)
               }
@@ -169,6 +282,7 @@ export default function LoginPage() {
         </p>
       </div>
     </div>
+    </>
   )
 }
 

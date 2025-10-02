@@ -24,7 +24,7 @@ export default function AutoplayVideo({ src, posterImage, className = '' }: Auto
         if (entry.isIntersecting) {
           // Play when video enters viewport
           videoRef.current.play().catch(err => {
-            console.log('Autoplay prevented:', err);
+            // console.log('Autoplay prevented:', err);
           });
         } else {
           // Pause when video leaves viewport

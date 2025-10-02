@@ -81,7 +81,7 @@ const uploads = [
 uploads.forEach(async ({ file, public_id }) => {
   try {
     const result = await cloudinary.uploader.upload(file, { public_id })
-    console.log(`✅ Uploaded: ${public_id}`)
+    // console.log(`✅ Uploaded: ${public_id}`)
   } catch (error) {
     console.error(`❌ Failed to upload ${public_id}:`, error)
   }
@@ -255,9 +255,9 @@ dsecure/
 ### Debug Mode:
 ```javascript
 // Add to your component for debugging
-console.log('Cloud Name:', import.meta.env.VITE_CLOUDINARY_CLOUD_NAME)
-console.log('Public ID:', publicId)
-console.log('Generated URL:', cloudinaryImage.toURL())
+// console.log('Cloud Name:', import.meta.env.VITE_CLOUDINARY_CLOUD_NAME)
+// console.log('Public ID:', publicId)
+// console.log('Generated URL:', cloudinaryImage.toURL())
 ```
 
 ## 📊 Monitoring
