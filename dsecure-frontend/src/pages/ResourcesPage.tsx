@@ -188,13 +188,13 @@ export default function ResourcesPage() {
                 Knowledge Center & Resources
               </h1>
             </Reveal>
-            <Reveal delayMs={100}>
+            <Reveal delayMs={10}>
               <p className="text-xl text-slate-600 mb-8 leading-relaxed">
                 Access comprehensive guides, whitepapers, case studies, webinars, and technical documentation 
                 to maximize your data sanitization success. Search across all content and reference links.
               </p>
             </Reveal>
-            <Reveal delayMs={200}>
+            <Reveal delayMs={20}>
               <div className="max-w-md mx-auto">
                 <div className="relative">
                   <input
@@ -417,7 +417,7 @@ export default function ResourcesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Reveal delayMs={100}>
+            <Reveal delayMs={10}>
               <div className="text-center p-6 bg-white rounded-xl shadow-lg border border-slate-200/60">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -432,7 +432,7 @@ export default function ResourcesPage() {
               </div>
             </Reveal>
 
-            <Reveal delayMs={200}>
+            <Reveal delayMs={20}>
               <div className="text-center p-6 bg-white rounded-xl shadow-lg border border-slate-200/60">
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -447,7 +447,7 @@ export default function ResourcesPage() {
               </div>
             </Reveal>
 
-            <Reveal delayMs={300}>
+            <Reveal delayMs={30}>
               <div className="text-center p-6 bg-white rounded-xl shadow-lg border border-slate-200/60">
                 <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

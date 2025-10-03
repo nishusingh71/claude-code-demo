@@ -68,7 +68,7 @@ export default function UserDashboard() {
             </div>
           </div>
         </Reveal>
-        <Reveal delayMs={100}>
+        <Reveal delayMs={10}>
           <div className="card !p-6">
             <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
               <svg className="w-5 h-5 text-brand/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -87,7 +87,7 @@ export default function UserDashboard() {
             </div>
           </div>
         </Reveal>
-        <Reveal delayMs={200}>
+        <Reveal delayMs={20}>
           <div className="card !p-4 sm:!p-6 min-w-0">
             <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
               <svg className="w-5 h-5 text-brand/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -106,7 +106,7 @@ export default function UserDashboard() {
             </div>
           </div>
         </Reveal>
-        <Reveal delayMs={300}>
+        <Reveal delayMs={30}>
           <div className="card !p-4 sm:!p-6 min-w-0">
             <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
               <svg className="w-5 h-5 text-brand/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">

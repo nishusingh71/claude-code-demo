@@ -129,8 +129,8 @@ export default function PageLoadingSkeleton() {
     )
   }
 
-  // Products page
-  if (path === '/products') {
+  // Services page
+  if (path === '/services') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50">
         <div className="container-app py-16 space-y-12">

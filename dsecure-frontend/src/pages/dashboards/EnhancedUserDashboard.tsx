@@ -217,7 +217,7 @@ export default function EnhancedUserDashboard() {
         </Reveal>
 
         <PermissionGuard permissions={['read:all', 'read:department']}>
-          <Reveal delayMs={100}>
+          <Reveal delayMs={10}>
             <div className="card p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -236,7 +236,7 @@ export default function EnhancedUserDashboard() {
           </Reveal>
         </PermissionGuard>
 
-        <Reveal delayMs={200}>
+        <Reveal delayMs={20}>
           <div className="card p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -254,7 +254,7 @@ export default function EnhancedUserDashboard() {
           </div>
         </Reveal>
 
-        <Reveal delayMs={300}>
+        <Reveal delayMs={30}>
           <div className="card p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -315,7 +315,7 @@ export default function EnhancedUserDashboard() {
         </Reveal>
 
         {/* Recent Activity */}
-        <Reveal delayMs={100}>
+        <Reveal delayMs={10}>
           <div className="card p-6">
             <h3 className="text-lg font-semibold mb-4">Recent Erasures</h3>
             <div className="space-y-4">
@@ -352,7 +352,7 @@ export default function EnhancedUserDashboard() {
 
       {/* Developer Info Panel (Only show in development) */}
       {process.env.NODE_ENV === 'development' && (
-        <Reveal delayMs={100}>
+        <Reveal delayMs={10}>
           <div className="bg-white rounded-lg p-6 shadow-sm border border-slate-200">
             <h3 className="text-lg font-semibold mb-4 text-slate-700">🔧 JWT Debug Info</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

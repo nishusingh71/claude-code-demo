@@ -1,5 +1,16 @@
 import Reveal from '@/components/Reveal'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { 
+  ShieldIcon, 
+  ClipboardIcon, 
+  GearIcon, 
+  CheckIcon,
+  LightningIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  HoverIcon 
+} from '@/components/FlatIcons'
 
 type Standard = {
   title: string;
@@ -17,6 +28,27 @@ type Standards = {
 
 export default function CompliancePage() {
   const [activeStandard, setActiveStandard] = useState<keyof Standards>('nist')
+  const [searchParams] = useSearchParams()
+
+  // Handle URL parameters to auto-select compliance standards
+  useEffect(() => {
+    const urlSearch = searchParams.get('search')?.toLowerCase()
+    if (urlSearch) {
+      if (urlSearch.includes('nist')) {
+        setActiveStandard('nist')
+      } else if (urlSearch.includes('iso') || urlSearch.includes('27001')) {
+        setActiveStandard('iso27001')
+      } else if (urlSearch.includes('gdpr') || urlSearch.includes('privacy')) {
+        setActiveStandard('gdpr')
+      } else if (urlSearch.includes('hipaa') || urlSearch.includes('healthcare')) {
+        setActiveStandard('hipaa')
+      } else if (urlSearch.includes('sox') || urlSearch.includes('sarbanes')) {
+        setActiveStandard('sox')
+      } else if (urlSearch.includes('dod') || urlSearch.includes('defense')) {
+        setActiveStandard('dod')
+      }
+    }
+  }, [searchParams])
 
   const standards: Standards = {
     nist: {
@@ -135,38 +167,38 @@ export default function CompliancePage() {
   const auditFeatures = [
     {
       title: 'Tamper-Proof Certificates',
-      description: 'Cryptographically signed certificates that cannot be altered or forged',
+      description: 'Cryptographically signed certificates that cannot be forged.',
       icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
+        <HoverIcon>
+          {(filled) => <ShieldIcon className="w-6 h-6" filled={filled} />}
+        </HoverIcon>
       )
     },
     {
       title: 'Chain of Custody',
       description: 'Complete tracking from device intake to final disposition',
       icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-        </svg>
+        <HoverIcon>
+          {(filled) => <ClipboardIcon className="w-6 h-6" filled={filled} />}
+        </HoverIcon>
       )
     },
     {
       title: 'White Label Support',
-      description: 'Customizable branding and interface options for seamless integration',
+      description: 'Customizable branding and UI for seamless integration.',
       icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17v4a2 2 0 002 2h4m-6-6V9a2 2 0 012-2h2m0 0V5a2 2 0 012-2h4a2 2 0 012 2v2M9 7h6" />
-        </svg>
+        <HoverIcon>
+          {(filled) => <GearIcon className="w-6 h-6" filled={filled} />}
+        </HoverIcon>
       )
     },
     {
       title: 'Automated Reporting',
       description: 'Generate compliance reports for auditors and regulators',
       icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
+        <HoverIcon>
+          {(filled) => <ClipboardIcon className="w-6 h-6" filled={filled} />}
+        </HoverIcon>
       )
     }
   ]
@@ -182,13 +214,13 @@ export default function CompliancePage() {
                 Comprehensive Compliance & Standards
               </h1>
             </Reveal>
-            <Reveal delayMs={100}>
+            <Reveal delayMs={10}>
               <p className="text-xl text-slate-600 mb-8 leading-relaxed">
                 Meet and exceed global data sanitization frameworks with verifiable, 
                 repeatable erasure protocols. Built for the most stringent regulatory requirements.
               </p>
             </Reveal>
-            <Reveal delayMs={200}>
+            <Reveal delayMs={20}>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href="#standards" className="btn-primary">
                   Explore Standards
@@ -252,9 +284,9 @@ export default function CompliancePage() {
                       <div className="space-y-3">
                         {standards[activeStandard].requirements.map((req, index) => (
                           <div key={index} className="flex items-start gap-3">
-                            <svg className="w-5 h-5 text-purple-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
+                            <HoverIcon>
+                              {(filled) => <CheckIcon className="w-5 h-5 text-purple-500 flex-shrink-0 mt-0.5" filled={filled} />}
+                            </HoverIcon>
                             <span className="text-slate-700 text-sm">{req}</span>
                           </div>
                         ))}
@@ -275,9 +307,9 @@ export default function CompliancePage() {
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
                       <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
+                        <HoverIcon>
+                          {(filled) => <CheckIcon className="w-4 h-4 text-green-600" filled={filled} />}
+                        </HoverIcon>
                       </div>
                       <div>
                         <div className="font-medium text-slate-900 text-sm">Audit Ready</div>
@@ -287,9 +319,9 @@ export default function CompliancePage() {
 
                     <div className="flex items-start gap-3">
                       <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
+                        <HoverIcon>
+                          {(filled) => <ShieldIcon className="w-4 h-4 text-blue-600" filled={filled} />}
+                        </HoverIcon>
                       </div>
                       <div>
                         <div className="font-medium text-slate-900 text-sm">Risk Mitigation</div>
@@ -299,9 +331,9 @@ export default function CompliancePage() {
 
                     <div className="flex items-start gap-3">
                       <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
+                        <HoverIcon>
+                          {(filled) => <LightningIcon className="w-4 h-4 text-purple-600" filled={filled} />}
+                        </HoverIcon>
                       </div>
                       <div>
                         <div className="font-medium text-slate-900 text-sm">Automated Compliance</div>
@@ -316,6 +348,45 @@ export default function CompliancePage() {
                     </a>
                   </div>
                 </div>
+              </div>
+              
+              {/* Navigation Footer */}
+              <div className="flex items-center justify-between p-4 md:p-6 border-t border-slate-200/60 bg-slate-50/50">
+                <button
+                  onClick={() => {
+                    const standardKeys = Object.keys(standards);
+                    const currentIndex = standardKeys.indexOf(activeStandard as string);
+                    const prevIndex = currentIndex === 0 ? standardKeys.length - 1 : currentIndex - 1;
+                    setActiveStandard(standardKeys[prevIndex]);
+                  }}
+                  className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-brand transition-colors rounded-lg hover:bg-white/80"
+                >
+                  <HoverIcon>
+                    {(filled) => <ArrowLeftIcon className="w-4 h-4" filled={filled} />}
+                  </HoverIcon>
+                  <span className="text-sm font-medium">Previous Standard</span>
+                </button>
+                
+                <div className="text-center">
+                  <div className="text-xs text-slate-400">
+                    {Object.keys(standards).indexOf(activeStandard as string) + 1} of {Object.keys(standards).length}
+                  </div>
+                </div>
+                
+                <button
+                  onClick={() => {
+                    const standardKeys = Object.keys(standards);
+                    const currentIndex = standardKeys.indexOf(activeStandard as string);
+                    const nextIndex = currentIndex === standardKeys.length - 1 ? 0 : currentIndex + 1;
+                    setActiveStandard(standardKeys[nextIndex]);
+                  }}
+                  className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-brand transition-colors rounded-lg hover:bg-white/80"
+                >
+                  <span className="text-sm font-medium">Next Standard</span>
+                  <HoverIcon>
+                    {(filled) => <ArrowRightIcon className="w-4 h-4" filled={filled} />}
+                  </HoverIcon>
+                </button>
               </div>
             </div>
           </Reveal>

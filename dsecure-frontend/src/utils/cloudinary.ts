@@ -136,10 +136,10 @@ export const transformations = {
 // Asset mapping - replace local assets with Cloudinary public IDs
 export const assets = {
   logos: {
-    main: 'dsecure/logos/logo', // Upload your logo.svg to Cloudinary with this public ID
-    white: 'dsecure/logos/logo-white', // Upload your blogo.svg as logo-white
-    icon: 'dsecure/logos/icon', // Just the icon part
-    favicon: 'dsecure/logos/favicon' // Favicon version
+    main: 'dsecure/logos/dsecure-logo-black', // Black logo for light backgrounds
+    white: 'dsecure/logos/dsecure-logo-white', // White logo for dark backgrounds (footer)
+    icon: 'dsecure/logos/dsecure-icon', // Just the icon part
+    favicon: 'dsecure/logos/dsecure-favicon' // Favicon version
   },
   
   images: {

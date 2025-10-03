@@ -1,5 +1,14 @@
 import Reveal from "@/components/Reveal";
 import { useState } from "react";
+import { 
+  ShieldIcon, 
+  LightningIcon, 
+  CheckIcon, 
+  StarIcon,
+  ChatIcon,
+  HeartIcon,
+  HoverIcon 
+} from '@/components/FlatIcons';
 
 export default function AboutPage() {
   const [activeYear, setActiveYear] = useState("2025");
@@ -13,25 +22,25 @@ export default function AboutPage() {
       icon: "🚀",
     },
     // {
-    //   year: 'Q1 2024',
+    //   year: 'Q1 2025',
     //   title: 'Product Development',
     //   description: 'Built our core platform with cutting-edge AI technology and modern security protocols.',
     //   icon: '⚡'
     // },
     // {
-    //   year: 'Q2 2024',
+    //   year: 'Q2 2025',
     //   title: 'Beta Launch',
     //   description: 'Successfully launched beta version with select enterprise clients for testing and feedback.',
     //   icon: '🧪'
     // },
     // {
-    //   year: 'Q3 2024',
+    //   year: 'Q3 2025',
     //   title: 'First Commercial Release',
     //   description: 'Officially launched DSecure platform with comprehensive data erasure and compliance features.',
     //   icon: '📱'
     // },
     // {
-    //   year: 'Q4 2024',
+    //   year: 'Q4 2025',
     //   title: 'Customer Growth',
     //   description: 'Onboarded initial enterprise customers and processed first 10,000+ devices successfully.',
     //   icon: '📈'
@@ -54,26 +63,26 @@ export default function AboutPage() {
     {
       name: "Dhruv Rai",
       position: "Founder & CEO",
-      bio: "Serial entrepreneur with 15+ years in cybersecurity, previously founded two successful startups.",
-      image: "",
-      education: "Stanford, MBA & Computer Science",
-      specialties: ["Startup Leadership", "Product Strategy", "Fundraising"],
+      // bio: "Serial entrepreneur with under decade in cybersecurity, previously founded two successful startups.",
+      // image: "",
+      // education: "Stanford, MBA & Computer Science",
+      // specialties: ["Startup Leadership", "Product Strategy", "Fundraising"],
     },
     {
-      name: "Aditi Rai",
-      position: "Co-founder & CTO",
-      bio: "Former Lead Engineer at major tech companies, expert in AI and data security algorithms.",
-      image: "",
-      education: "MIT, Computer Science & AI",
-      specialties: ["AI/ML", "System Architecture", "Data Security"],
+      name: "Soorya",
+      position: "Product Designer",
+      // bio: "Former Lead Engineer at major tech companies, expert in AI and data security algorithms.",
+      // image: "",
+      // education: "MIT, Computer Science & AI",
+      // specialties: ["AI/ML", "System Architecture", "Data Security"],
     },
     {
-      name: "Jaya Rai",
-      position: "VP of Product",
-      bio: "Product leader from enterprise security companies, focused on user experience and market fit.",
-      image: "",
-      education: "Berkeley, Product Management",
-      specialties: ["Product Strategy", "UX Design", "Market Research"],
+      name: "Deepak",
+      position: "Research & Development Head",
+      // bio: "Product leader from enterprise security companies, focused on user experience and market fit.",
+      // image: "",
+      // education: "Berkeley, Product Management",
+      // specialties: ["Product Strategy", "UX Design", "Market Research"],
     },
     // {
     //   name: "Maria Rodriguez",
@@ -91,19 +100,9 @@ export default function AboutPage() {
       description:
         "We prioritize data security in everything we do, ensuring your sensitive information is protected with military-grade protocols.",
       icon: (
-        <svg
-          className="w-8 h-8"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-          />
-        </svg>
+        <HoverIcon>
+          {(filled) => <ShieldIcon className="w-8 h-8" filled={filled} />}
+        </HoverIcon>
       ),
       color: "from-blue-500 to-blue-600",
     },
@@ -112,19 +111,9 @@ export default function AboutPage() {
       description:
         "We continuously evolve our solutions to stay ahead of emerging security challenges and technological advances.",
       icon: (
-        <svg
-          className="w-8 h-8"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M13 10V3L4 14h7v7l9-11h-7z"
-          />
-        </svg>
+        <HoverIcon>
+          {(filled) => <LightningIcon className="w-8 h-8" filled={filled} />}
+        </HoverIcon>
       ),
       color: "from-purple-500 to-purple-600",
     },
@@ -133,19 +122,9 @@ export default function AboutPage() {
       description:
         "We maintain the highest standards of professional ethics, transparency, and accountability in all operations.",
       icon: (
-        <svg
-          className="w-8 h-8"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
+        <HoverIcon>
+          {(filled) => <CheckIcon className="w-8 h-8" filled={filled} />}
+        </HoverIcon>
       ),
       color: "from-green-500 to-green-600",
     },
@@ -154,19 +133,9 @@ export default function AboutPage() {
       description:
         "We deliver exceptional quality in our products and services, exceeding customer expectations consistently.",
       icon: (
-        <svg
-          className="w-8 h-8"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-          />
-        </svg>
+        <HoverIcon>
+          {(filled) => <StarIcon className="w-8 h-8" filled={filled} />}
+        </HoverIcon>
       ),
       color: "from-orange-500 to-orange-600",
     },
@@ -175,19 +144,9 @@ export default function AboutPage() {
       description:
         "We believe in the power of teamwork and partnerships to achieve extraordinary results together.",
       icon: (
-        <svg
-          className="w-8 h-8"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 119.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-          />
-        </svg>
+        <HoverIcon>
+          {(filled) => <ChatIcon className="w-8 h-8" filled={filled} />}
+        </HoverIcon>
       ),
       color: "from-teal-500 to-teal-600",
     },
@@ -196,19 +155,9 @@ export default function AboutPage() {
       description:
         "We promote responsible data disposal practices that protect the environment and support circular economy.",
       icon: (
-        <svg
-          className="w-8 h-8"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
+        <HoverIcon>
+          {(filled) => <HeartIcon className="w-8 h-8" filled={filled} />}
+        </HoverIcon>
       ),
       color: "from-emerald-500 to-emerald-600",
     },
@@ -222,19 +171,19 @@ export default function AboutPage() {
   //     description: 'Most promising new cybersecurity startup of the year'
   //   },
   //   {
-  //     year: '2024',
+  //     year: '2025',
   //     title: 'Innovation Spotlight',
   //     organization: 'RSA Conference',
   //     description: 'Recognized for breakthrough AI-powered data erasure technology'
   //   },
   //   {
-  //     year: '2024',
+  //     year: '2025',
   //     title: 'Best New Product',
   //     organization: 'InfoSec Awards',
   //     description: 'Outstanding new solution in data protection category'
   //   },
   //   {
-  //     year: '2024',
+  //     year: '2025',
   //     title: 'Startup to Watch',
   //     organization: 'CyberSeek Magazine',
   //     description: 'Featured as one of the top emerging cybersecurity companies'
@@ -255,15 +204,15 @@ export default function AboutPage() {
                 </span>
               </h1>
             </Reveal>
-            <Reveal delayMs={100}>
+            <Reveal delayMs={10}>
               <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-                Founded in 2024, DSecure is revolutionizing the data erasure
+                Founded in 2025, DSecure is revolutionizing the data erasure
                 industry with cutting-edge technology, bringing fresh innovation
                 and modern solutions to data protection and compliance
                 challenges.
               </p>
             </Reveal>
-            <Reveal delayMs={200}>
+            <Reveal delayMs={20}>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href="#story" className="btn-primary">
                   Our Story
@@ -282,7 +231,7 @@ export default function AboutPage() {
         <div className="container-app">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
             {[
-              { number: "2024", label: "Year Founded", icon: "📅" },
+              { number: "2025", label: "Year Founded", icon: "📅" },
               { number: "25K+", label: "Devices Secured", icon: "🔒" },
               { number: "99.8%", label: "Success Rate", icon: "✅" },
               { number: "15+", label: "Countries Served", icon: "🌍" },
@@ -313,7 +262,7 @@ export default function AboutPage() {
                 Our Journey
               </h2>
             </Reveal>
-            <Reveal delayMs={100}>
+            <Reveal delayMs={10}>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                 From a small startup to a global leader in data security,
                 discover the milestones that shaped our company.
@@ -416,7 +365,7 @@ export default function AboutPage() {
               </div>
             </Reveal>
 
-            <Reveal delayMs={200}>
+            <Reveal delayMs={20}>
               <div className="bg-white rounded-2xl shadow-xl border border-slate-200/60 p-8 md:p-12">
                 <div className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center mb-6">
                   <svg
@@ -475,7 +424,7 @@ export default function AboutPage() {
                 Our Core Values
               </h2>
             </Reveal>
-            <Reveal delayMs={100}>
+            <Reveal delayMs={10}>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                 The principles that guide our decisions, shape our culture, and
                 drive our commitment to excellence.
@@ -514,7 +463,7 @@ export default function AboutPage() {
                 Leadership Team
               </h2>
             </Reveal>
-            <Reveal delayMs={100}>
+            <Reveal delayMs={10}>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                 Meet the experienced leaders driving DSecure's innovation and
                 growth across the globe.
@@ -526,18 +475,18 @@ export default function AboutPage() {
             {leadership.map((leader, i) => (
               <Reveal key={i} delayMs={i * 150}>
                 <div className="bg-white rounded-2xl p-6 shadow-xl border border-slate-200/60 text-center hover:shadow-2xl transition-shadow duration-300">
-                  <div className="text-6xl mb-4">{leader.image}</div>
+                  {/* <div className="text-6xl mb-4">{leader.image}</div> */}
                   <h3 className="font-bold text-slate-900 text-lg mb-1">
                     {leader.name}
                   </h3>
                   <p className="text-brand font-medium text-sm mb-3">
                     {leader.position}
                   </p>
-                  <p className="text-slate-600 text-sm mb-4 leading-relaxed">
+                  {/* <p className="text-slate-600 text-sm mb-4 leading-relaxed">
                     {leader.bio}
-                  </p>
+                  </p> */}
 
-                  <div className="space-y-3 text-xs">
+                  {/* <div className="space-y-3 text-xs">
                     <div className="p-3 bg-slate-50 rounded-lg">
                       <div className="font-medium text-slate-900 mb-1">
                         Education
@@ -560,7 +509,7 @@ export default function AboutPage() {
                         ))}
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </Reveal>
             ))}
@@ -575,7 +524,7 @@ export default function AboutPage() {
             <Reveal>
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Awards & Recognition</h2>
             </Reveal>
-            <Reveal delayMs={100}>
+            <Reveal delayMs={10}>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                 Our commitment to excellence has been recognized by leading industry organizations worldwide.
               </p>
@@ -609,7 +558,7 @@ export default function AboutPage() {
       </section> */}
 
       {/* Careers CTA */}
-      <section className="py-16 md:py-24">
+      {/* <section className="py-16 md:py-24">
         <div className="container-app">
           <Reveal>
             <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-2xl p-8 md:p-12 text-center text-white">
@@ -663,7 +612,7 @@ export default function AboutPage() {
             </div>
           </Reveal>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }

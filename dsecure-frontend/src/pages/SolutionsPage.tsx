@@ -1,53 +1,97 @@
 import Reveal from '@/components/Reveal'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { 
+  BuildingIcon, 
+  ShieldIcon, 
+  HeartIcon, 
+  DollarIcon, 
+  GlobeIcon, 
+  BriefcaseIcon,
+  ChatIcon,
+  ArrowDownIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  CheckIcon,
+  HoverIcon
+} from '@/components/FlatIcons'
 
 export default function SolutionsPage() {
   type IndustryKey = keyof typeof solutions;
   const [activeIndustry, setActiveIndustry] = useState<IndustryKey>('enterprise')
+  const [searchParams] = useSearchParams()
+
+  // Handle URL parameters to auto-select solutions
+  useEffect(() => {
+    const urlSearch = searchParams.get('search')?.toLowerCase()
+    if (urlSearch) {
+      if (urlSearch.includes('enterprise') || urlSearch.includes('business')) {
+        setActiveIndustry('enterprise')
+      } else if (urlSearch.includes('itad') || urlSearch.includes('asset')) {
+        setActiveIndustry('itad')
+      } else if (urlSearch.includes('healthcare') || urlSearch.includes('medical') || urlSearch.includes('hipaa')) {
+        setActiveIndustry('healthcare')
+      } else if (urlSearch.includes('financial') || urlSearch.includes('banking') || urlSearch.includes('finance')) {
+        setActiveIndustry('financial')
+      } else if (urlSearch.includes('government') || urlSearch.includes('public')) {
+        setActiveIndustry('government')
+      } else if (urlSearch.includes('service') || urlSearch.includes('provider')) {
+        setActiveIndustry('serviceProviders')
+      }
+    }
+  }, [searchParams])
 
   const solutions = {
     enterprise: {
       title: 'Enterprise Solutions',
       subtitle: 'Complete IT asset lifecycle management',
-      description: 'Streamline your enterprise IT refresh cycles with automated data sanitization, compliance reporting, and asset tracking.',
+      description: 'Ease enterprise cloud migrations, IT asset decommissioning and end-of-life data erasure with certified and secure data erasure software. Get certified erasure at scale for all your IT data storage assets across workforce, operations, and data centers.',
       icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-        </svg>
+        <HoverIcon>
+          {(filled) => <BuildingIcon className="w-8 h-8" filled={filled} />}
+        </HoverIcon>
       ),
       benefits: [
-        'Reduce IT refresh cycle time by 60%',
-        'Ensure 100% compliance with data protection regulations',
-        'Automated certificate generation and archival',
-        'Integration with existing ITSM platforms'
+        'Software-based data sanitization for safe and sustainable reuse',
+        'Tamper-proof audit trail with digitally signed reports',
+        'Integration with ServiceNow and common IT asset management platforms',
+        'Supports cloud migration, data center, and endpoint device erasure',
+        'Active environment erasure for enterprise data management policies',
+        'Reduced e-waste and increased technology investment returns'
       ],
       useCases: [
-        { title: 'Hardware Refresh', description: 'Secure sanitization during equipment upgrades' },
+        { title: 'Cloud Migration', description: 'Secure data handling during cloud infrastructure transitions' },
+        { title: 'Data Center Erasure', description: 'Meticulous erasure from servers, loose drives, and storage networks' },
+        { title: 'Endpoint Device Management', description: 'Erase data from desktops, laptops, mobile devices, and removable media' },
+        { title: 'Data Retention Policies', description: 'Securely remove ROT data from storage mediums' },
         { title: 'Employee Offboarding', description: 'Complete data removal from departing employee devices' },
-        { title: 'Merger & Acquisition', description: 'Data sanitization during corporate restructuring' },
-        { title: 'Compliance Audits', description: 'Generate audit-ready reports for regulatory compliance' }
+        { title: 'Storage & Loose Drives', description: 'Securely manage loose drives and large-scale storage systems' }
       ]
     },
     itad: {
       title: 'ITAD Solutions',
       subtitle: 'IT Asset Disposition made simple',
-      description: 'Purpose-built workflows for ITAD providers to process thousands of devices efficiently while maintaining compliance.',
+      description: 'Trusted ITAD partner solutions that automate end-of-life IT asset diagnostics and sanitization at scale. Streamline workflows, eliminate downtime, and maximize profits while ensuring data protection across laptops, desktops, servers, loose drives, and mobile devices.',
       icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
+        <HoverIcon>
+          {(filled) => <ShieldIcon className="w-8 h-8" filled={filled} />}
+        </HoverIcon>
       ),
       benefits: [
-        'Process up to 1000 devices per day',
-        'Multi-client management with data segregation',
-        'Automated invoicing and reporting',
-        'Chain of custody documentation'
+        'Intelligent Business Routing (IBR) for streamlined workflows',
+        'High-volume mobile device processing for resale and recycling',
+        'Extended Asset Management Integration with AMS/ERP systems',
+        'Tamper-proof, audit-worthy reports for customer compliance',
+        'Two-way communication reducing human error and increasing speed',
+        'Support for Android, iOS and broad variety of IT assets'
       ],
       useCases: [
-        { title: 'Bulk Processing', description: 'Handle large volumes of client devices efficiently' },
-        { title: 'Multi-Client Operations', description: 'Manage multiple client jobs simultaneously' },
-        { title: 'Compliance Reporting', description: 'Generate client-specific compliance certificates' },
-        { title: 'Asset Valuation', description: 'Automated asset assessment and pricing' }
+        { title: 'Laptop & Desktop Processing', description: 'Sanitize individual assets for resale and recycling preparation' },
+        { title: 'Loose Drives Management', description: 'Meet security and compliance objectives for loose drive processing' },
+        { title: 'Server Processing', description: 'Secure server management processes with automated workflows' },
+        { title: 'Storage Systems', description: 'Monitor and manage drives, arrays, and large-scale storage systems' },
+        { title: 'Mobile Device Operations', description: 'Process high volumes of mobile devices for repair, resale, or recycling' },
+        { title: 'Multi-Client Workflows', description: 'Seamless integration supporting multiple client requirements simultaneously' }
       ]
     },
     healthcare: {
@@ -55,9 +99,9 @@ export default function SolutionsPage() {
       subtitle: 'HIPAA-compliant data sanitization',
       description: 'Specialized solutions for healthcare organizations requiring HIPAA compliance and patient data protection.',
       icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-        </svg>
+        <HoverIcon>
+          {(filled) => <HeartIcon className="w-8 h-8" filled={filled} />}
+        </HoverIcon>
       ),
       benefits: [
         'HIPAA-compliant data destruction',
@@ -77,9 +121,9 @@ export default function SolutionsPage() {
       subtitle: 'Banking-grade security standards',
       description: 'Ultra-secure data sanitization for financial institutions with stringent regulatory requirements.',
       icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
+        <HoverIcon>
+          {(filled) => <DollarIcon className="w-8 h-8" filled={filled} />}
+        </HoverIcon>
       ),
       benefits: [
         'SOX and PCI DSS compliance',
@@ -97,23 +141,28 @@ export default function SolutionsPage() {
     government: {
       title: 'Government Solutions',
       subtitle: 'Military-grade security for public sector',
-      description: 'Classified data sanitization solutions meeting the highest government security standards.',
+      description: 'Securely sanitize drives in PCs, laptops, Mac devices, and rackmount storage with NIST-tested software. Comply with federal and state regulations including CMMC 2.0, NIST 800-171, and other government security standards for complete data protection.',
       icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
+        <HoverIcon>
+          {(filled) => <GlobeIcon className="w-8 h-8" filled={filled} />}
+        </HoverIcon>
       ),
       benefits: [
-        'FISMA and FedRAMP compliance',
-        'Classified data handling',
-        'NSA-approved sanitization',
-        'Security clearance support'
+        'NIST 800-88, DoD 3/7 pass global data erasure standards compliance',
+        'FISMA, CMMC 2.0, HIPAA, GLBA regulatory compliance support',
+        'Common Criteria Certified for Assurance Level EAL 2',
+        'Wipe up to 100 drives and devices simultaneously',
+        'Cloud and offline (USB boot) deployment options',
+        'ISO customization for standardizing erasure across locations',
+        'Centralized console with tamper-proof reports and certificates'
       ],
       useCases: [
-        { title: 'Classified Systems', description: 'Top secret and classified data sanitization' },
-        { title: 'Defense Contracts', description: 'DOD-compliant data destruction protocols' },
-        { title: 'Agency Migrations', description: 'Secure data handling during system modernization' },
-        { title: 'FISMA Compliance', description: 'Federal information security management' }
+        { title: 'Federal Data Centers', description: 'Secure erasure of government servers and storage systems' },
+        { title: 'Defense Establishments', description: 'High-security offline erasure for classified environments' },
+        { title: 'Research Laboratories', description: 'Compliant data destruction for sensitive research data' },
+        { title: 'Banking Facilities', description: 'Financial sector compliance with government oversight' },
+        { title: 'Agency Modernization', description: 'Secure data handling during system upgrades and migrations' },
+        { title: 'Mobile Device Management', description: 'Government-grade mobile device sanitization and diagnostics' }
       ]
     },
     serviceProviders: {
@@ -121,9 +170,9 @@ export default function SolutionsPage() {
       subtitle: 'White-label solutions for MSPs',
       description: 'Comprehensive data sanitization services that MSPs can offer to their clients with full branding.',
       icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
+        <HoverIcon>
+          {(filled) => <BriefcaseIcon className="w-8 h-8" filled={filled} />}
+        </HoverIcon>
       ),
       benefits: [
         'White-label branding options',
@@ -142,28 +191,28 @@ export default function SolutionsPage() {
 
   const caseStudies = [
     {
-      company: 'Global Bank',
+      company: 'Asia Pacific Medical Group',
+      industry: 'Healthcare',
+      challenge: 'Regional healthcare network needed HIPAA-compliant data erasure for 2,500+ medical devices across 12 countries within strict 3-month compliance deadline.',
+      solution: 'Deployed DSecure Healthcare solution with automated PHI-specific protocols and multi-region compliance reporting for seamless rollout.',
+      results: '100% compliance achieved in 10 weeks, 85% reduction in manual processes, zero data breaches during transition',
+      logo: '�'
+    },
+    {
+      company: 'Southeast Banking Corporation',
       industry: 'Financial Services',
-      challenge: 'Needed to sanitize 10,000+ workstations across 50 countries while maintaining SOX compliance.',
-      solution: 'Deployed DSecure Enterprise with automated reporting and multi-region coordination.',
-      results: '99.99% compliance rate, 75% reduction in processing time, $2M cost savings',
+      challenge: 'State-owned bank required PCI DSS compliant data sanitization across data centers, ATMs, and branch systems while maintaining 24/7 operations.',
+      solution: 'Implemented DSecure Enterprise with automated lifecycle management, remote erasure capabilities, and real-time compliance monitoring.',
+      results: 'Zero operational downtime, 95% faster audit preparation, $1.8M annual cost savings through automation',
       logo: '🏦'
     },
     {
-      company: 'TechCorp ITAD',
+      company: 'Global IT Recovery Solutions',
       industry: 'IT Asset Disposition',
-      challenge: 'Processing 500+ devices daily for multiple clients with different compliance requirements.',
-      solution: 'Implemented DSecure ITAD solution with multi-client workflow management.',
-      results: '200% increase in processing capacity, 100% client compliance, automated invoicing',
+      challenge: 'ITAD provider processing 1,000+ enterprise devices monthly needed scalable solution to handle multiple client compliance requirements simultaneously.',
+      solution: 'Deployed DSecure ITAD platform with multi-tenant architecture, automated certification generation, and bulk processing capabilities.',
+      results: '300% increase in device processing capacity, 99.9% client satisfaction, automated invoicing reduced admin costs by 60%',
       logo: '♻️'
-    },
-    {
-      company: 'Metro Hospital Network',
-      industry: 'Healthcare',
-      challenge: 'HIPAA-compliant disposal of medical devices containing patient data.',
-      solution: 'Custom DSecure Healthcare solution with PHI-specific sanitization protocols.',
-      results: 'Zero compliance violations, 90% faster processing, automated audit trails',
-      logo: '🏥'
     }
   ]
 
@@ -193,7 +242,7 @@ export default function SolutionsPage() {
                 </div>
               </Reveal>
               
-              <Reveal delayMs={100}>
+              <Reveal delayMs={10}>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 mb-6">
                   Tailored Data Erasure for{' '}
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-600">
@@ -202,31 +251,31 @@ export default function SolutionsPage() {
                 </h1>
               </Reveal>
               
-              <Reveal delayMs={200}>
+              <Reveal delayMs={20}>
                 <p className="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed">
                   Specialized workflows, compliance frameworks, and reporting tools designed for your industry's unique requirements. 
                   From healthcare HIPAA compliance to financial PCI DSS standards.
                 </p>
               </Reveal>
               
-              <Reveal delayMs={300}>
+              <Reveal delayMs={30}>
                 <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
                   <a href="/contact" className="btn-primary group">
-                    <svg className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
+                    <HoverIcon>
+                      {(filled) => <ChatIcon className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" filled={filled} />}
+                    </HoverIcon>
                     Discuss Your Needs
                   </a>
                   <a href="#solutions" className="btn-secondary group">
-                    <svg className="w-5 h-5 mr-2 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                    </svg>
+                    <HoverIcon>
+                      {(filled) => <ArrowDownIcon className="w-5 h-5 mr-2 group-hover:translate-y-0.5 transition-transform" filled={filled} />}
+                    </HoverIcon>
                     Explore Solutions
                   </a>
                 </div>
               </Reveal>
               
-              <Reveal delayMs={400}>
+              <Reveal delayMs={40}>
                 <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm text-slate-500">
                   <div className="flex items-center gap-2">
                     <svg className="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
@@ -252,7 +301,7 @@ export default function SolutionsPage() {
             
             {/* Right Content - Visual Elements */}
             <div className="relative">
-              <Reveal delayMs={500}>
+              <Reveal delayMs={50}>
                 <div className="relative mx-auto max-w-lg">
                   {/* Main Image Container */}
                   <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/50 overflow-hidden">
@@ -352,14 +401,14 @@ export default function SolutionsPage() {
                   </div>
                   
                   {/* Floating Stats Cards */}
-                  <Reveal delayMs={700}>
+                  <Reveal delayMs={70}>
                     <div className="absolute -top-4 -right-4 bg-gradient-to-br from-emerald-500 to-emerald-600 text-white p-4 rounded-xl shadow-lg">
                       <div className="text-2xl font-bold">500K+</div>
                       <div className="text-xs opacity-90">Devices Secured</div>
                     </div>
                   </Reveal>
                   
-                  <Reveal delayMs={800}>
+                  <Reveal delayMs={80}>
                     <div className="absolute -bottom-4 -left-4 bg-gradient-to-br from-teal-500 to-teal-600 text-white p-4 rounded-xl shadow-lg">
                       <div className="text-2xl font-bold">99.9%</div>
                       <div className="text-xs opacity-90">Success Rate</div>
@@ -406,6 +455,12 @@ export default function SolutionsPage() {
           {/* Active Solution Details */}
           <Reveal key={activeIndustry}>
             <div className="bg-white rounded-2xl shadow-xl border border-slate-200/60 overflow-hidden">
+              {/* Solution Header */}
+              <div className="text-center p-4 md:p-6 border-b border-slate-200/60 bg-slate-50/50">
+                <div className="text-sm text-slate-500 mb-1">Solution</div>
+                <div className="text-lg font-semibold text-slate-900">{solutions[activeIndustry].title}</div>
+              </div>
+              
               <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 lg:gap-8">
                 {/* Solution Overview */}
                 <div className="xl:col-span-2 p-6 md:p-8 lg:p-12">
@@ -431,9 +486,9 @@ export default function SolutionsPage() {
                         {solutions[activeIndustry].benefits.map((benefit, index) => (
                           <div key={index} className="flex items-center gap-3">
                             <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
-                              <svg className="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                              </svg>
+                            <HoverIcon>
+                              {(filled) => <CheckIcon className="w-5 h-5 text-emerald-500" filled={filled} />}
+                            </HoverIcon>
                             </div>
                             <span className="text-slate-700 text-sm leading-relaxed">{benefit}</span>
                           </div>
@@ -476,7 +531,7 @@ export default function SolutionsPage() {
                       </div>
                       <div>
                         <div className="font-medium text-slate-900 text-sm">Proven Track Record</div>
-                        <div className="text-slate-600 text-xs mt-1">15+ years serving enterprises worldwide</div>
+                        <div className="text-slate-600 text-xs mt-1">under decade serving enterprises worldwide</div>
                       </div>
                     </div>
 
@@ -525,6 +580,45 @@ export default function SolutionsPage() {
                   </div>
                 </div>
               </div>
+              
+              {/* Navigation Footer */}
+              <div className="flex items-center justify-between p-4 md:p-6 border-t border-slate-200/60 bg-slate-50/50">
+                <button
+                  onClick={() => {
+                    const industries = Object.keys(solutions) as IndustryKey[];
+                    const currentIndex = industries.indexOf(activeIndustry);
+                    const prevIndex = currentIndex === 0 ? industries.length - 1 : currentIndex - 1;
+                    setActiveIndustry(industries[prevIndex]);
+                  }}
+                  className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-brand transition-colors rounded-lg hover:bg-white/80"
+                >
+                  <HoverIcon>
+                    {(filled) => <ArrowLeftIcon className="w-4 h-4" filled={filled} />}
+                  </HoverIcon>
+                  <span className="text-sm font-medium">Previous Solution</span>
+                </button>
+                
+                <div className="text-center">
+                  <div className="text-xs text-slate-400">
+                    {Object.keys(solutions).indexOf(activeIndustry) + 1} of {Object.keys(solutions).length}
+                  </div>
+                </div>
+                
+                <button
+                  onClick={() => {
+                    const industries = Object.keys(solutions) as IndustryKey[];
+                    const currentIndex = industries.indexOf(activeIndustry);
+                    const nextIndex = currentIndex === industries.length - 1 ? 0 : currentIndex + 1;
+                    setActiveIndustry(industries[nextIndex]);
+                  }}
+                  className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-brand transition-colors rounded-lg hover:bg-white/80"
+                >
+                  <span className="text-sm font-medium">Next Solution</span>
+                  <HoverIcon>
+                    {(filled) => <ArrowRightIcon className="w-4 h-4" filled={filled} />}
+                  </HoverIcon>
+                </button>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -534,7 +628,7 @@ export default function SolutionsPage() {
       <section className="py-16 md:py-24 bg-slate-50">
         <div className="container-app">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Success Stories</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Case Studies</h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               See how organizations across industries have transformed their data erasure processes with DSecure.
             </p>

@@ -1,3 +1,6 @@
+/* Import performance optimizations */
+@import './performance.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,21 +20,24 @@
   .btn-primary {
     @apply px-6 py-3 rounded-lg bg-gradient-to-r from-brand to-brand-600 text-white font-medium 
            shadow-lg shadow-brand/30 hover:shadow-xl hover:shadow-brand/40 
-           active:shadow-brand/30 transform transition-all duration-200 
+           transform transition-transform duration-150 ease-out
            hover:-translate-y-0.5 active:translate-y-0;
   }
 
   .btn-secondary {
     @apply px-6 py-3 rounded-lg bg-white text-slate-700 font-medium border border-slate-200
-           shadow-sm hover:shadow-md hover:border-slate-300 transform transition-all duration-200
+           shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-150 ease-out
            hover:-translate-y-0.5 active:translate-y-0;
   }
 
   .card {
-    @apply p-4 sm:p-6 rounded-xl bg-white border border-slate-200/60 shadow-xl shadow-slate-900/10
-           backdrop-blur-sm backdrop-filter hover:shadow-2xl hover:shadow-slate-900/20
-           transition-all duration-300 hover:-translate-y-1 
-           w-full min-w-0 overflow-hidden;
+    @apply p-4 sm:p-6 rounded-xl bg-white border border-slate-200/60 shadow-lg
+           transition-transform duration-200 ease-out hover:-translate-y-1
+           will-change-transform w-full min-w-0 overflow-hidden;
+  }
+
+  .card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
 
   .card-content {
