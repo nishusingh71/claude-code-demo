@@ -44,7 +44,7 @@ export default function MainLayout() {
             /> */}
             {/* <img src="https://res.cloudinary.com/dhwi5wevf/image/upload/v1759335919/gx6mcjfpcrntaqwxtavf.svg" alt="DSecure"/> */}
 
-            <span className="text-2xl flex">
+            <span className="text-2xl flex items-center">
               <img
                 src={
                   "https://res.cloudinary.com/dhwi5wevf/image/upload/v1759503993/ec8v6wcjdpwgpplobi3w.svg"

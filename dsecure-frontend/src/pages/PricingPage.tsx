@@ -332,12 +332,16 @@ export default function PricingPage() {
 
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              <img className="w-10 h-10 inline-block  -mt-1"
-                src="https://res.cloudinary.com/dhwi5wevf/image/upload/v1759500145/i6866k0ghppo8vfq8yg4.png"
-                alt="logo"
-              />{" "}
+              <span>
+                <img
+                  src="https://res.cloudinary.com/dhwi5wevf/image/upload/v1759503993/ec8v6wcjdpwgpplobi3w.svg"
+                  alt=""
+                  className="w-10 h-10 inline-block -mt-1"
+                />
+              </span>{" "}
               D-SecureErase
             </span>
+
             <br />
             <span className="text-3xl md:text-4xl text-slate-800">
               Full Feature & Services Sheet
